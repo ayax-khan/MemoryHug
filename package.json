@@ -1,0 +1,27 @@
+{
+  "name": "past-present-studio",
+  "version": "1.0.0",
+  "description": "Create beautiful memories by merging your childhood and current photos into one stunning image",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s .",
+    "dev": "npx serve -s . -p 8080"
+  },
+  "keywords": [
+    "photo-merge",
+    "image-generation",
+    "memory",
+    "past-present",
+    "photo-editing"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/past-present-studio"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/past-present-studio/issues"
+  },
+  "homepage": "https://github.com/yourusername/past-present-studio#readme"
+}
