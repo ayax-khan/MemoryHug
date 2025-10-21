@@ -9,7 +9,6 @@ env/
 
 # Backend (separate repo)
 past-present-backend/
-backend/
 frontend/
 
 # Environment

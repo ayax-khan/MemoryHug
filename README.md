@@ -1,230 +1,186 @@
-# Past + Present Studio
+# 🤗 MemoryHug
 
-Create beautiful, emotional memories by merging your childhood and current photos into one stunning image.
+**AI-powered photo merging web app - Create beautiful memories by merging your past and present photos!**
 
-![Past + Present Studio](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://memoryhug.vercel.app)
+[![Backend API](https://img.shields.io/badge/API-Hugging%20Face-yellow)](https://huggingface.co/spaces/zeroday-00/past-present-backend)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-## ✨ Features
+## 🌟 Features
 
-- **Dual Upload System**: Intuitive drag-and-drop interface for childhood and current photos
-- **Real-time Preview**: See your photos instantly before generation
-- **Multiple Styles**: Choose from Classic, Cinematic, Vintage, or Photoreal rendering
-- **Advanced Controls**: Fine-tune blend amount, opacity, background treatment, and lighting
-- **Before/After Comparison**: Interactive slider to compare original photos with merged result
-- **Download & Share**: Save your memory or share it directly from the app
-- **Fully Responsive**: Beautiful experience on mobile, tablet, and desktop
-- **Accessible**: WCAG-compliant with keyboard navigation and screen reader support
-- **Privacy-First**: Photos processed securely with clear privacy messaging
+- 📸 **Dual Photo Upload** - Upload childhood and current photos
+- 🎨 **AI-Powered Merging** - Intelligent photo blending with face detection
+- 🎭 **Multiple Styles** - Classic, Cinematic, Vintage, Photoreal
+- ⚙️ **Advanced Controls** - Blend amount, opacity, background effects
+- 👀 **Before/After Comparison** - Interactive slider
+- 📥 **Download & Share** - Save or share your memories
+- 📱 **Fully Responsive** - Works on mobile, tablet, and desktop
+- ♿ **Accessible** - WCAG compliant with keyboard navigation
 
-## 🎨 Design Highlights
+## 🏗️ Project Structure
 
-- **Color Palette**: 
-  - Primary: Teal/Cyan (#0ea5a4)
-  - Accent: Warm Orange (#fb923c)
-  - Background: Off-white (#f8fafc)
-- **Typography**: Poppins for headings, Inter for body text
-- **UI Elements**: Soft shadows, rounded corners, smooth animations
-- **Mobile-First**: Responsive grid layout that adapts beautifully
+```
+MemoryHug/
+├── frontend-files/          # Frontend (HTML/CSS/JS)
+│   ├── index.html          # Main page
+│   ├── app.js              # JavaScript logic
+│   ├── styles.css          # Styling
+│   └── config.js           # Configuration
+│
+├── backend/                # Backend API (FastAPI)
+│   ├── app.py              # Main FastAPI app
+│   ├── config.py           # Configuration
+│   ├── requirements.txt    # Python dependencies
+│   ├── Dockerfile          # Docker configuration
+│   ├── utils/              # Image processing utilities
+│   └── models/             # AI model integration
+│
+└── README.md               # This file
+```
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### **Frontend (Local)**
 
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- FastAPI backend running (see Backend Setup below)
+```bash
+# Clone repository
+git clone https://github.com/ayax-khan/MemoryHug.git
+cd MemoryHug/frontend-files
 
-### Frontend Setup
+# Open in browser
+# Simply open index.html in your browser
+# OR use a local server:
+python -m http.server 8080
+# Visit: http://localhost:8080
+```
 
-1. **Clone or download** this repository
+### **Backend (Local)**
 
-2. **Update API endpoint** in `app.js`:
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run server
+python app.py
+# API will run at: http://localhost:7860
+```
+
+### **Full Stack Local Development**
+
+1. Start backend (port 7860)
+2. Update frontend `config.js`:
    ```javascript
-   const API_BASE_URL = 'http://localhost:8000'; // Change to your backend URL
+   const API_BASE_URL = 'http://localhost:7860';
    ```
+3. Open frontend in browser
 
-3. **Open in browser**:
-   - Simply open `index.html` in your browser, or
-   - Use a local server (recommended):
-     ```bash
-     # Python
-     python -m http.server 8080
-     
-     # Node.js
-     npx serve
-     
-     # PHP
-     php -S localhost:8080
-     ```
+## 🌐 Live Deployment
 
-4. **Access the app**:
-   ```
-   http://localhost:8080
-   ```
+### **Frontend**: Vercel
+- Auto-deploys from `main` branch
+- Live at: https://memoryhug.vercel.app
 
-### Backend Setup
+### **Backend**: Hugging Face Spaces
+- Deployed as Docker container
+- API at: https://zeroday-00-past-present-backend.hf.space
 
-The frontend expects a FastAPI backend with the following endpoint:
+## 🛠️ Tech Stack
 
-**Endpoint**: `POST /api/generate`
+### **Frontend**
+- HTML5, CSS3 (Modern)
+- Vanilla JavaScript (ES6+)
+- Google Fonts (Inter, Poppins)
 
-**Form Data**:
-- `childhood_photo`: File (PNG/JPG, max 10MB)
-- `current_photo`: File (PNG/JPG, max 10MB)
-- `style`: String (classic|cinematic|vintage|photoreal)
-- `blend`: Integer (0-100)
-- `opacity`: Integer (0-100)
-- `background`: String (original|blur|replace)
-- `light_match`: Boolean
+### **Backend**
+- **Framework**: FastAPI (Python)
+- **Image Processing**: Pillow, OpenCV
+- **Face Detection**: Haar Cascade (CPU-friendly)
+- **AI Model**: Stable Diffusion (optional, fallback blending default)
+- **Deployment**: Docker on Hugging Face Spaces
 
-**Response**: Image file (PNG/JPG)
+## 📋 Requirements
 
-**Error Response**:
-```json
-{
-  "detail": "Error message"
-}
-```
+### **Frontend**
+- Modern browser (Chrome 90+, Firefox 88+, Safari 14+)
 
-## 📂 Project Structure
+### **Backend**
+- Python 3.10+
+- Dependencies in `backend/requirements.txt`
 
-```
-FuturePlusPresent/
-├── index.html          # Main HTML structure
-├── styles.css          # Complete styling with responsive design
-├── app.js              # JavaScript functionality
-├── README.md           # This file
-└── package.json        # Project metadata (optional)
-```
+## 🎨 How It Works
 
-## 🎯 Usage Guide
+1. **Upload** - User uploads childhood and current photos
+2. **Face Detection** - OpenCV detects faces in both images
+3. **Feature Extraction** - Extract face embeddings
+4. **AI Merging** - Generate merged image (AI model or fallback blend)
+5. **Post-Processing** - Apply lighting match, effects, opacity
+6. **Download** - User downloads or shares the result
 
-### 1. Upload Photos
+## 🔧 Configuration
 
-- **Childhood Photo**: Drag & drop or click to select your childhood photo
-- **Current Photo**: Upload your recent photo
-- **Supported formats**: PNG, JPG, JPEG (max 10MB each)
-- **Best results**: Front-facing photos with good lighting
-
-### 2. Configure Settings
-
-- **Style**: Select rendering style (Classic, Cinematic, Vintage, Photoreal)
-- **Advanced Options** (optional):
-  - Blend Amount: Control how photos merge (0-100)
-  - Opacity: Adjust transparency (0-100)
-  - Background: Keep original, blur, or replace
-  - Light Match: Automatically match lighting between photos
-
-### 3. Generate
-
-- Click **Generate Memory** button
-- Wait 8-15 seconds while AI processes your images
-- Progress indicator shows real-time status
-
-### 4. View & Share
-
-- **Tabs**: Switch between Merged, Before, and After views
-- **Compare**: Use interactive slider to see before/after
-- **Caption**: Add a custom message for sharing
-- **Actions**:
-  - **Download**: Save as PNG
-  - **Share**: Share via native share or copy link
-  - **Retry**: Generate again with different settings
-
-## 🔧 Customization
-
-### Colors
-
-Edit CSS variables in `styles.css`:
-
-```css
-:root {
-    --primary: #0ea5a4;
-    --accent: #fb923c;
-    --bg: #f8fafc;
-    /* ... */
-}
-```
-
-### API Endpoint
-
-Update in `app.js`:
-
+### **Frontend**
+Edit `frontend-files/app.js`:
 ```javascript
-const API_BASE_URL = 'https://your-backend.com';
+const API_BASE_URL = 'YOUR_BACKEND_URL';
 ```
 
-### Fonts
-
-Change fonts in `index.html` and `styles.css`:
-
-```html
-<link href="https://fonts.googleapis.com/css2?family=YourFont" rel="stylesheet">
+### **Backend**
+Edit `backend/config.py`:
+```python
+TARGET_SIZE = (512, 512)  # Image processing size
+MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB limit
 ```
-
-## 🌐 Browser Support
-
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 🔒 Privacy & Security
-
-- Photos are sent to backend only when generating
-- No client-side storage of images (cleared on page unload)
-- All processing happens server-side
-- Users are informed about temporary storage
-- Share feature requires explicit user permission
-
-## ⚡ Performance
-
-- Lightweight: ~50KB total (HTML + CSS + JS)
-- No dependencies: Pure vanilla JavaScript
-- Optimized images: Progressive loading
-- Responsive: Adapts to any screen size
-- Smooth animations: GPU-accelerated CSS
 
 ## 🐛 Troubleshooting
 
-### Issue: Generate button stays disabled
-**Solution**: Ensure both photos are uploaded and under 10MB
+### Face Not Detected
+- Use clear, front-facing photos
+- Ensure good lighting
+- Image should be at least 256x256 pixels
 
-### Issue: API errors
-**Solution**: Check backend is running and API_BASE_URL is correct
+### CORS Errors
+- Backend allows all origins by default
+- For production, update CORS settings in `backend/app.py`
 
-### Issue: Share not working
-**Solution**: Share API requires HTTPS or localhost; fallback copies link
-
-### Issue: Images not displaying
-**Solution**: Check browser console for CORS errors; enable CORS on backend
+### Slow Processing
+- Fallback blending: ~2-5 seconds (CPU)
+- With AI model: ~5-15 seconds (GPU recommended)
 
 ## 📝 License
 
-MIT License - feel free to use this project for personal or commercial purposes.
+MIT License - Free for personal and commercial use
 
-## 🙏 Credits
+## 🙏 Acknowledgments
 
-- Design: Inspired by modern photo editing apps
-- Icons: Inline SVG icons for performance
+- Face detection: OpenCV Haar Cascades
 - Fonts: Google Fonts (Inter, Poppins)
+- Icons: Custom SVG icons
+
+## 👨‍💻 Author
+
+**Ayax Khan** - [GitHub](https://github.com/ayax-khan)
+
+## 🤝 Contributing
+
+Contributions welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📧 Support
 
-For issues or questions, please:
-1. Check the troubleshooting section
-2. Review browser console for errors
-3. Verify backend is running correctly
-
-## 🚧 Roadmap
-
-- [ ] Image cropping/alignment tool
-- [ ] Multiple photo pairs support
-- [ ] Save history (with account)
-- [ ] Social media direct posting
-- [ ] PWA support with offline mode
-- [ ] More style presets
-- [ ] Batch processing
+For issues or questions:
+- Open an issue on GitHub
+- Check existing issues for solutions
 
 ---
 
